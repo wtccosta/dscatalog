@@ -45,7 +45,7 @@ const findCategoriesResponse = {
   empty: false,
 };
 
-const saveProductResponse = {
+export const productResponse = {
   id: 2,
   name: 'Smart TV',
   description:
@@ -68,15 +68,15 @@ const saveProductResponse = {
 
 export const server = setupServer(
   rest.get(`${BASE_URL}/categories`, (req, res, ctx) => {
-    return res(
-        ctx.status(200),
-        ctx.json(findCategoriesResponse)
-        );
+    return res(ctx.status(200), ctx.json(findCategoriesResponse));
   }),
   rest.post(`${BASE_URL}/products`, (req, res, ctx) => {
-    return res(
-        ctx.status(201), 
-        ctx.json(saveProductResponse)
-        );
+    return res(ctx.status(201), ctx.json(productResponse));
+  }),
+  rest.put(`${BASE_URL}/products/:productId`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(productResponse));
+  }),
+  rest.get(`${BASE_URL}/products/:productId`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(productResponse));
   })
 );
